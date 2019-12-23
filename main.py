@@ -3,7 +3,7 @@ import time
 from selenium import webdriver#导入库
 
 #读取答案库
-f = open("unit8.txt","r",encoding="utf-8")   #设置文件对象
+f = open("unit4.txt","r",encoding="utf-8")   #设置文件对象
 filelines = f.readlines()
 
 data = {}
@@ -24,7 +24,7 @@ browser = webdriver.Chrome()#声明浏览器
 user_id = ''
 password = ''
 
-url = 'https://bb.btbu.edu.cn/'
+url = 'https://bb.xxxx.edu.cn/'
 browser.get(url)#打开浏览器预设网址
 time.sleep(2)#延时加载
 
@@ -39,13 +39,13 @@ try:
 except:
     print("login failed")
 
-#进入答题页面
+#进入预答题页面
 url2 = ''
 browser.get(url2)
 browser.find_element_by_name('bottom_开始').click()
 time.sleep(2)
 
-#进入新答题页面
+#进入z真实答题页面
 url3 = ''
 browser.get(url3)
 time.sleep(2)
@@ -55,17 +55,20 @@ time.sleep(2)
 # 输入id="fitb-ans-XXX"
 #答题
 for i in range(59):
-    time.sleep(5)
+    time.sleep(2)
     word = browser.find_element_by_xpath("//*[@class='vtbegenerated inlineVtbegenerated']").text
     print(word)
-    ans = data[word]
-    print(ans)
+    try:
+        ans = data[word]
+        print(ans)
+    except:
+        #问题答案输入null
+        browser.find_element_by_xpath('//*[starts-with(@id,"fitb-ans")]').send_keys('null')
+        time.sleep(1)
+        browser.find_element_by_xpath("//*[@class='abutton pagelink']").click()
+        continue
     browser.find_element_by_xpath('//*[starts-with(@id,"fitb-ans")]').send_keys(ans)
     time.sleep(1)
     browser.find_element_by_xpath("//*[@class='abutton pagelink']").click()
 
 browser.close()
-
-
-
-
