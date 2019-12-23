@@ -3,11 +3,11 @@
 ## selenium库
 `pip install selenium`
 ## 修改
-  username
-  password
-  url
-  url2
-  url3
-  unitX.txt(用|分割)
+    username
+    password
+    url
+    url2
+    url3
+    unitX.txt(用|分割)
 ## 运行
 `python main.py`
