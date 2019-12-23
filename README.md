@@ -1,5 +1,6 @@
 # BB-Platform-autoAns
 用于BB平台自动填写单词
+**仅用于强关联**
 ## selenium库
 `pip install selenium`
 ## 修改
